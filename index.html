@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>devICT - Conversational Chatbots using Amazon Lex</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<script type="text/template">
+						## devICT
+						Building Conversational Chatbots with Amazon Lex
+						<div style="text-align:right; font-size:24px;">- Sandip Southekal</div>
+					</script>
+				</section>
+				
+				<section>
+					<h2>Chatbots!</h2>
+					<p style="text-align:center">a computer program designed to simulate conversation with human users</p>
+				</section>
+
+				<section>
+					<h3>"Bots are the new apps," declared Microsoft CEO Satya Nadella in 2016</h3>
+				</section>	
+
+				<section>
+					<h2>They are all the rage, but why?</h1>
+					<div style="text-align:center; font-size:33px;"> 
+					<ul> 
+						<li>Investments from Kik, Facebook Messenger, Microsoft, Amazon </li>
+						<li>Plain tired of downloading apps </li>
+						<li>People live in chats (within messenger apps) </li>
+						<li>Access within SMS/txt, Skype, WeChat, Slack, Line, Telegram, Twitter </li>
+						<li>Advancements in key NLP and AI tech so that even non-programmers might be able to create simple but useful chatbots
+					</ul>
+					</div>
+				</section>
+
+				<section>
+					<img src="/screenshots/example.png">
+				</section>	
+				
+				<section data-markdown>
+					<script type="text/template">
+						### Current State of Chatbot Builders*
+						| Platform | Grade |
+						| ------ | ------ |
+						| IBM Watson Conversation | Enterprise |
+						| Amazon Lex | Enterprise |
+						| Microsoft Bot Framework | Enterprise |
+						| motion.ai | Small/Medium |
+						| api.ai | Small/Medium |
+						<div style="text-align:right; font-size:12px;">* Selected platforms</div> 	
+					</script>
+				</section>	
+
+				<section>
+					<h2>Amazon Lex</h2>
+					<ul style="font-size:35px;">
+						<li>Platform launched to all users - April 20th, 2017</li>
+						<br>
+						<li>Service for building conversational interfaces into any application using voice and text.</li>
+						<br>
+						<li>Same deep learning technologies that power Amazon Alexa</li>
+						<br>
+						<li>Pre-trained models on massive amounts of data and infrastructure</li>
+						<br>
+						<li>Bots can be published to messaging platforms like Facebook Messenger, Slack, and Twilio SMS</li>
+					<ul>
+				</section>
+
+				<section>
+					<h2>Amazon Lex Ecosystem<h2>
+				</section>
+				<section>
+					<h6>Validation and External Service Integration - Amazon Lambda</h3>
+					<ul>
+						<li>Lets you run code without provisioning or managing servers</li>
+						<li>Set up your code to automatically trigger from other AWS services or call it directly from any web or mobile app</li>
+					</ul>
+					<img src="https://d0.awsstatic.com/Test%20Images/MasonTests/Lambda/Lambda_FileProcessing.png">
+				</section>	
+
+				<section>
+					<h3>Terminology</h3>
+					<ul>
+						<li><b>Intents</b> - An intent represents an action that the user wants to perform. eg: "I want to order a pizza"</li><br>
+						<li><b>Slots</b>- To fulfill an intent, the Amazon Lex bot needs information from the user.  eg: the OrderPizza intent requires slots such as pizza size, crust type, and number of pizzas.</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="/screenshots/lex-backend-1.png">
+				</section>
+
+				<section>
+					<img src="/screenshots/lex-pricing.png">
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### Lex API Response Structure</h3>
+						```
+							{
+							    'intentName': 'string',
+							    'slots': {
+							        'string': 'string'
+							    },
+							    'sessionAttributes': {
+							        'string': 'string'
+							    },
+							    'message': 'string',
+							    'dialogState': 'ElicitIntent'|'ConfirmIntent'|'ElicitSlot'|'Fulfilled'|'ReadyForFulfillment'|'Failed',
+							    'slotToElicit': 'string',
+							    'responseCard': {
+							        'version': 'string',
+							        'contentType': 'application/vnd.amazonaws.card.generic',
+							        'genericAttachments': [
+							            {
+							                'title': 'string',
+							                'subTitle': 'string',
+							                'attachmentLinkUrl': 'string',
+							                'imageUrl': 'string',
+							                'buttons': [
+							                    {
+							                        'text': 'string',
+							                        'value': 'string'
+							                    },
+							                ]
+							            },
+							        ]
+							    }
+							}
+						```
+					</script>
+				</section>	
+				
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
